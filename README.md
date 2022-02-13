@@ -4,25 +4,19 @@
 This is the implementation of spark cluster on top of hadoop (1 masternode, 2 slaves node) using Docker
 
 # Follow this steps on Windows 10
-### 1. pull docker image
-
-```
-docker pull ghcr.io/nghoanglong/hadoop-cluster-with-docker/hadoop-cluster:latest
-```
-
-### 2. clone github repo
+### 1. clone github repo
 
 ```
 https://github.com/nghoanglong/hadoop-cluster-with-docker.git
 
 ```
 
-### 4. start cluster
+### 2. start cluster
 
 ```
 docker-compose up
 ``` 
 
-### 5. access site
+### 3. access site
 1. spark master: https://localhost:8080
 2. jupyter notebook: https://localhost:8888
