@@ -1,0 +1,38 @@
+version: '3'
+
+services:
+  hadoop-spark-master:
+    container_name: hadoop-spark-master
+    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:latest
+    networks:
+      - hadoop-spark
+    ports:
+      - "50070:50070"
+      - "8088:8088"
+      - "8080:8080"
+      - "7077:7077"
+      - "8888:8888"
+    hostname: hadoop-spark-master
+    command: ["sh", "-c", "service ssh start; ./start-cluster.sh; tail -f /dev/null"]
+  hadoop-spark-slave1:
+    container_name: hadoop-spark-slave1
+    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:latest
+    networks:
+      - hadoop-spark
+    hostname: hadoop-spark-slave1
+    depends_on:
+      - hadoop-spark-master
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+  hadoop-spark-slave2:
+    container_name: hadoop-spark-slave2
+    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:latest
+    networks:
+      - hadoop-spark
+    hostname: hadoop-spark-slave2
+    depends_on:
+      - hadoop-spark-master
+    command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
+
+networks:
+  hadoop-spark:
+    driver: bridge
