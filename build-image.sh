@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t hadoop-spark-cluster:latest .
+docker build -t spark-cluster:latest .
