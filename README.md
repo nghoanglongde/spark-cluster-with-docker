@@ -10,10 +10,10 @@ This is the implementation of spark cluster on top of hadoop (1 masternode, 2 sl
 ### 1. clone github repo
 ```
 # Step 1
-https://github.com/nghoanglong/hadoop-cluster-with-docker.git
+https://github.com/nghoanglong/spark-cluster-with-docker.git
 
 # Step 2
-cd hadoop-cluster-with-docker
+cd spark-cluster-with-docker
 ```
 ### 2. pull docker image
 ```
