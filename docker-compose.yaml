@@ -13,6 +13,7 @@ services:
       - "7077:7077"
       - "8888:8888"
       - "18080:18080"
+      - "4040:4040"
     hostname: hadoop-spark-master
     command: ["sh", "-c", "service ssh start; ./start-cluster.sh; tail -f /dev/null"]
   hadoop-spark-slave1:
