@@ -8,7 +8,8 @@ RUN apt-get update && apt-get install -y \
     nano \
     openjdk-8-jdk \
     python3.7
-
+    
+RUN pip3 install --upgrade setuptools pip
 RUN pip3 install jupyter && \
     pip3 install pyspark
 
