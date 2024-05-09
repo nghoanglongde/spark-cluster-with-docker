@@ -31,3 +31,4 @@ docker-compose up
 3. spark cluster: https://localhost:8080/
 4. jupyter notebook: https://localhost:8888/
 5. spark history server: http://localhost:18080/
+6. spark job monitoring: http://localhost:4040/
