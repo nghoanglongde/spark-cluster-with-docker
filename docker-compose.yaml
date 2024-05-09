@@ -5,7 +5,7 @@ services:
     container_name: hadoop-spark-master
     build: 
       context: .
-      dockerfile: Dockefile
+      dockerfile: Dockerfile
     networks:
       - hadoop-spark
     ports:
@@ -22,7 +22,7 @@ services:
     container_name: hadoop-spark-slave1
     build: 
       context: .
-      dockerfile: Dockefile
+      dockerfile: Dockerfile
     networks:
       - hadoop-spark
     hostname: hadoop-spark-slave1
@@ -33,7 +33,7 @@ services:
     container_name: hadoop-spark-slave2
     build: 
       context: .
-      dockerfile: Dockefile
+      dockerfile: Dockerfile
     networks:
       - hadoop-spark
     hostname: hadoop-spark-slave2
