@@ -3,7 +3,9 @@ version: '3'
 services:
   hadoop-spark-master:
     container_name: hadoop-spark-master
-    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:1.0
+    build: 
+      context: .
+      dockerfile: Dockefile
     networks:
       - hadoop-spark
     ports:
@@ -18,7 +20,9 @@ services:
     command: ["sh", "-c", "service ssh start; ./start-cluster.sh; tail -f /dev/null"]
   hadoop-spark-slave1:
     container_name: hadoop-spark-slave1
-    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:1.0
+    build: 
+      context: .
+      dockerfile: Dockefile
     networks:
       - hadoop-spark
     hostname: hadoop-spark-slave1
@@ -27,7 +31,9 @@ services:
     command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
   hadoop-spark-slave2:
     container_name: hadoop-spark-slave2
-    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:1.0
+    build: 
+      context: .
+      dockerfile: Dockefile
     networks:
       - hadoop-spark
     hostname: hadoop-spark-slave2
