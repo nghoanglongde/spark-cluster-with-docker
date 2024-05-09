@@ -1,0 +1,10 @@
+<configuration>
+    <property>
+        <name>dfs.namenode.heartbeat.recheck-interval</name>
+        <value>3000</value>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>2</value>
+    </property>
+</configuration>

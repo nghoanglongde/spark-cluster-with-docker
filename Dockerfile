@@ -3,14 +3,18 @@ FROM ubuntu:18.04
 WORKDIR /root
 
 RUN apt-get update && apt-get install -y \
-    python3-pip \
     openssh-server \
     nano \
-    openjdk-8-jdk \
-    python3.7
+    openjdk-8-jdk
 
-RUN pip3 install jupyter && \
-    pip3 install pyspark
+RUN apt-get install -y python3 && \ 
+    apt-get install -y python3-pip && \
+    ln -s /usr/bin/python3 /usr/bin/python && \
+    rm -rf /var/lib/apt/lists/*
+
+RUN pip3 install --upgrade setuptools && \
+    pip3 install pyspark && \
+    pip3 install jupyter
 
 # download hadoop
 RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
@@ -19,10 +23,10 @@ RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7
     rm hadoop-2.7.7.tar.gz
 
 # download spark
-RUN wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop2.7.tgz && \
-    tar -xzf spark-3.2.1-bin-hadoop2.7.tgz && \
-    mv spark-3.2.1-bin-hadoop2.7 /usr/local/spark && \
-    rm spark-3.2.1-bin-hadoop2.7.tgz
+RUN wget https://archive.apache.org/dist/spark/spark-3.2.4/spark-3.2.4-bin-hadoop2.7.tgz && \
+    tar -xzf spark-3.2.4-bin-hadoop2.7.tgz && \
+    mv spark-3.2.4-bin-hadoop2.7 /usr/local/spark && \
+    rm spark-3.2.4-bin-hadoop2.7.tgz
 
 # set environment vars
 ENV HADOOP_HOME=/usr/local/hadoop
@@ -40,7 +44,7 @@ RUN ssh-keygen -t rsa -f ~/.ssh/id_rsa -P '' && \
     chmod 0600 ~/.ssh/authorized_keys
 
 # copy hadoop configs
-COPY config/* /tmp/
+COPY /spark_configs/* /tmp/
 
 RUN mv /tmp/ssh_config ~/.ssh/config && \
     mv /tmp/hadoop-env.sh $HADOOP_HOME/etc/hadoop/hadoop-env.sh && \

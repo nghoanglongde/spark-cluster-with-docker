@@ -1,11 +1,15 @@
 version: '3'
 
 services:
-  hadoop-spark-master:
-    container_name: hadoop-spark-master
-    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:1.0
+  hadoop-namenode:
+    container_name: hadoop-namenode
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - hadoop-spark
+    mem_limit: 2g
+    cpus: 1
     ports:
       - "50070:50070"
       - "8088:8088"
@@ -13,25 +17,37 @@ services:
       - "7077:7077"
       - "8888:8888"
       - "18080:18080"
-    hostname: hadoop-spark-master
+      - "4040:4040"
+      - "10000:10000"
+    hostname: hadoop-namenode
     command: ["sh", "-c", "service ssh start; ./start-cluster.sh; tail -f /dev/null"]
-  hadoop-spark-slave1:
-    container_name: hadoop-spark-slave1
-    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:1.0
+  hadoop-datanode1:
+    container_name: hadoop-datanode1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    mem_limit: 1.5g
+    cpus: 2
+    ports:
+      - "8081:8081"
     networks:
       - hadoop-spark
-    hostname: hadoop-spark-slave1
+    hostname: hadoop-datanode1
     depends_on:
-      - hadoop-spark-master
+      - hadoop-namenode
     command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
-  hadoop-spark-slave2:
-    container_name: hadoop-spark-slave2
-    image: ghcr.io/nghoanglong/spark-cluster-with-docker/spark-cluster:1.0
+  hadoop-datanode2:
+    container_name: hadoop-datanode2
+    build:
+      context: .
+      dockerfile: Dockerfile
     networks:
       - hadoop-spark
-    hostname: hadoop-spark-slave2
+    mem_limit: 1.5g
+    cpus: 2
+    hostname: hadoop-datanode2
     depends_on:
-      - hadoop-spark-master
+      - hadoop-namenode
     command: ["sh", "-c", "service ssh start; tail -f /dev/null"]
 
 networks:

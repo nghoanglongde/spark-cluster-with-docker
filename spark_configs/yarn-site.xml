@@ -5,6 +5,6 @@
     </property>
     <property>
         <name>yarn.resourcemanager.hostname</name>
-        <value>hadoop-spark-master</value>
+        <value>hadoop-namenode</value>
     </property>
 </configuration>
