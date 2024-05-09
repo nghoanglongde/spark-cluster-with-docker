@@ -14,13 +14,13 @@ RUN pip3 install jupyter && \
     pip3 install pyspark
 
 # download hadoop
-RUN wget https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop2.7.tgz && \
+RUN wget https://archive.apache.org/dist/hadoop/common/hadoop-2.7.7/hadoop-2.7.7.tar.gz && \
     tar -xzf hadoop-2.7.7.tar.gz && \
     mv hadoop-2.7.7 /usr/local/hadoop && \
     rm hadoop-2.7.7.tar.gz
 
 # download spark
-RUN wget https://dlcdn.apache.org/spark/spark-3.2.1/spark-3.2.1-bin-hadoop2.7.tgz && \
+RUN wget https://archive.apache.org/dist/spark/spark-3.2.1/spark-3.2.1-bin-hadoop2.7.tgz && \
     tar -xzf spark-3.2.1-bin-hadoop2.7.tgz && \
     mv spark-3.2.1-bin-hadoop2.7 /usr/local/spark && \
     rm spark-3.2.1-bin-hadoop2.7.tgz
