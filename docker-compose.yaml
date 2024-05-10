@@ -19,6 +19,7 @@ services:
       - "18080:18080"
       - "4040:4040"
       - "10000:10000"
+      - "8087:8087"
     hostname: hadoop-namenode
     command: ["sh", "-c", "service ssh start; ./start-cluster.sh; tail -f /dev/null"]
   hadoop-datanode1:
