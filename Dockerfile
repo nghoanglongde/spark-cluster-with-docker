@@ -61,6 +61,8 @@ RUN mv /tmp/ssh_config ~/.ssh/config && \
 # create spark-events directory
 RUN mkdir /tmp/spark-events && \
     chmod 777 /tmp/spark-events
+    
+RUN chmod u+r+x ~/start-cluster.sh
 
 # remove CRLF
 RUN sed -i 's/\r$//g' $HADOOP_HOME/etc/hadoop/slaves
