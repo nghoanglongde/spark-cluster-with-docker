@@ -43,7 +43,8 @@
 
 # Options for the daemons used in the standalone deploy mode
 # - SPARK_MASTER_HOST, to bind the master to a different IP address or hostname
-export SPARK_MASTER_PORT=8087
+export SPARK_MASTER_PORT=7077
+export SPARK_MASTER_WEBUI_PORT=8081
 # - SPARK_MASTER_OPTS, to set config properties only for the master (e.g. "-Dx=y")
 # - SPARK_WORKER_CORES, to set the number of cores to use on this machine
 # - SPARK_WORKER_MEMORY, to set how much total memory workers have to give executors (e.g. 1000m, 2g)
